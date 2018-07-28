@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "Useful functions",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuware/functions.git"
+  },
   "scripts": {
     "lint": "eslint --fix index.js"
   },
