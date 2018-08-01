@@ -3,7 +3,12 @@
 ## Install
 
 ```bash
-npm install @nuware/functions --save
+npm install @nuware/functions@latest --save
+```
+or
+
+```html
+<script src="https://unpkg.com/@nuware/functions@latest/dist/index.js"></script>
 ```
 
 ## Authors

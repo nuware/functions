@@ -2,25 +2,22 @@
   "name": "@nuware/functions",
   "version": "0.1.6",
   "description": "Useful functions",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "module": "es/index.js",
   "files": [
     "dist",
-    "lib",
-    "es",
-    "src"
+    "es"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nuware/functions.git"
   },
   "scripts": {
-    "clean": "rimraf lib dist es",
+    "clean": "rimraf dist es",
     "lint": "eslint src/index.js",
     "build:es": "rollup -f esm -i src/index.js -o es/index.js",
     "build:umd": "rollup -f umd -i src/index.js -o dist/index.js -n F",
-    "build:cjs": "rollup -f cjs -i src/index.js -o lib/index.js",
-    "build": "npm run build:es && npm run build:umd && npm run build:cjs",
+    "build": "npm run build:es && npm run build:umd",
     "release": "npm run clean && npm run lint && npm run build"
   },
   "author": "Dmitry Dudin <dima@nuware.ru>",
