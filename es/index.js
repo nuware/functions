@@ -20,6 +20,7 @@ const isObject = a => eq('object')(typeOf(a)) && !isNull(a) && !isFunction(a) &&
 const head = xs => xs[0];
 const tail = xs => xs.slice(1);
 const reverse = xs => xs.slice().reverse();
+const last = xs => head(reverse(xs));
 const concat = b => a => a.concat(b);
 const append = a => xs => concat([a])(xs);
 const prepend = a => xs => concat(xs)([a]);
@@ -56,4 +57,4 @@ const toLower = s => s.toLowerCase();
 const toUpper = s => s.toUpperCase();
 const split = s => x => x.split(s);
 
-export { K, I, eq, ne, typeOf, instanceOf, isArray, isNull, isFunction, isString, isNumber, isBoolean, isDefined, isObject, head, tail, reverse, concat, append, prepend, join, map, each, filter, find, reduce, flatten, noop, not, apply, pipe, compose, composePromise, method, freeze, keys, prop, assoc, dissoc, values, has, omit, objectOf, toLower, toUpper, split };
+export { K, I, eq, ne, typeOf, instanceOf, isArray, isNull, isFunction, isString, isNumber, isBoolean, isDefined, isObject, head, tail, reverse, last, concat, append, prepend, join, map, each, filter, find, reduce, flatten, noop, not, apply, pipe, compose, composePromise, method, freeze, keys, prop, assoc, dissoc, values, has, omit, objectOf, toLower, toUpper, split };

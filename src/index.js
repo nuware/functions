@@ -20,6 +20,7 @@ export const isObject = a => eq('object')(typeOf(a)) && !isNull(a) && !isFunctio
 export const head = xs => xs[0]
 export const tail = xs => xs.slice(1)
 export const reverse = xs => xs.slice().reverse()
+export const last = xs => head(reverse(xs))
 export const concat = b => a => a.concat(b)
 export const append = a => xs => concat([a])(xs)
 export const prepend = a => xs => concat(xs)([a])

@@ -26,6 +26,7 @@
 	const head = xs => xs[0];
 	const tail = xs => xs.slice(1);
 	const reverse = xs => xs.slice().reverse();
+	const last = xs => head(reverse(xs));
 	const concat = b => a => a.concat(b);
 	const append = a => xs => concat([a])(xs);
 	const prepend = a => xs => concat(xs)([a]);
@@ -79,6 +80,7 @@
 	exports.head = head;
 	exports.tail = tail;
 	exports.reverse = reverse;
+	exports.last = last;
 	exports.concat = concat;
 	exports.append = append;
 	exports.prepend = prepend;
