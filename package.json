@@ -1,6 +1,6 @@
 {
   "name": "@nuware/functions",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Useful functions",
   "main": "lib/index.js",
   "module": "es/index.js",
