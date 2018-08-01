@@ -50,7 +50,7 @@ export const dissoc = k => x => reduce((acc, curr) => assoc(curr)(prop(curr)(x))
 export const values = x => map(k => prop(k)(x))(keys(x))
 export const has = k => x => isObject(x) && x.hasOwnProperty(k)
 export const omit = xs => x => reduce((acc, curr) => dissoc(curr)(acc))(x)(xs)
-export const objectOf = k => v => Object.assign({}, {[k]: v})
+export const objectOf = k => v => assoc(k)(v)({})
 
 // Strings
 export const toLower = s => s.toLowerCase()

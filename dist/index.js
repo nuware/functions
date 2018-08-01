@@ -56,7 +56,7 @@
 	const values = x => map(k => prop(k)(x))(keys(x));
 	const has = k => x => isObject(x) && x.hasOwnProperty(k);
 	const omit = xs => x => reduce((acc, curr) => dissoc(curr)(acc))(x)(xs);
-	const objectOf = k => v => Object.assign({}, {[k]: v});
+	const objectOf = k => v => assoc(k)(v)({});
 
 	// Strings
 	const toLower = s => s.toLowerCase();
