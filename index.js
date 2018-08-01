@@ -27,13 +27,14 @@ export const join = s => xs => xs.join(s)
 export const map = f => xs => xs.map(f)
 export const each = f => xs => xs.forEach(f)
 export const filter = f => xs => xs.filter(f)
+export const find = f => xs => xs.find(f)
 export const reduce = f => a => xs => xs.reduce(f, a)
 export const flatten = xs => reduce((a, c) => isArray(c) ? concat(flatten(c))(a) : append(c)(a))([])(xs)
 
 // Functions
 export const noop = () => {}
 export const not = a => !a
-export const apply = f => x => f.apply(null, x)
+export const apply = f => xs => f.apply(null, xs)
 export const pipe = (...fns) => x => reduce((a, fn) => fn(a))(x)(fns)
 export const compose = (...fns) => x => apply(pipe)(reverse(fns))(x)
 export const composePromise = (...fns) => x => reduce((acc, fn) => Promise.resolve(acc).then(fn))(x)(reverse(fns))
@@ -52,5 +53,5 @@ export const objectOf = k => v => Object.assign({}, {[k]: v})
 
 // Strings
 export const toLower = s => s.toLowerCase()
-export const toUpper = s => s.toUpperCaes()
+export const toUpper = s => s.toUpperCase()
 export const split = s => x => x.split(s)
