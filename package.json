@@ -2,22 +2,19 @@
   "name": "@nuware/functions",
   "version": "0.1.7",
   "description": "Useful functions",
-  "main": "dist/index.js",
-  "module": "es/index.js",
+  "main": "dist/functions.umd.js",
+  "module": "dist/functions.esm.js",
   "files": [
-    "dist",
-    "es"
+    "dist"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nuware/functions.git"
   },
   "scripts": {
-    "clean": "rimraf dist es",
+    "clean": "rimraf dist",
     "lint": "eslint src/index.js",
-    "build:es": "rollup -f esm -i src/index.js -o es/index.js",
-    "build:umd": "rollup -f umd -i src/index.js -o dist/index.js -n F",
-    "build": "npm run build:es && npm run build:umd",
+    "build": "rollup -c",
     "release": "npm run clean && npm run lint && npm run build"
   },
   "author": "Dmitry Dudin <dima@nuware.ru>",
@@ -32,9 +29,13 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "rollup": "^0.63.4"
+    "rollup": "^0.63.4",
+    "rollup-plugin-minify-es": "^1.1.1"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "rules": {
+      "no-multi-spaces": "off"
+    }
   }
 }
