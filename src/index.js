@@ -31,6 +31,7 @@ export const filter = f => xs => xs.filter(f)
 export const find = f => xs => xs.find(f)
 export const reduce = f => a => xs => xs.reduce(f, a)
 export const flatten = xs => reduce((a, c) => isArray(c) ? concat(flatten(c))(a) : append(c)(a))([])(xs)
+export const sort = f => xs => xs.slice().sort(f)
 
 // Functions
 export const noop = () => {}
