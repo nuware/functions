@@ -57,3 +57,13 @@ export const objectOf = k => v => assoc(k)(v)({})
 export const toLower = s => s.toLowerCase()
 export const toUpper = s => s.toUpperCase()
 export const split = s => x => x.split(s)
+
+const matched = x => freeze({
+  on: () => matched(x),
+  otherwise: () => x
+})
+
+export const match = x => freeze({
+  on: (predicat, fn) => (predicat(x) ? matched(fn(x)) : match(x)),
+  otherwise: fn => fn(x)
+})
