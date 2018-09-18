@@ -41,6 +41,13 @@ export const pipe = (...fns) => x => reduce((a, fn) => fn(a))(x)(fns)
 export const compose = (...fns) => x => apply(pipe)(reverse(fns))(x)
 export const composePromise = (...fns) => x => reduce((acc, fn) => Promise.resolve(acc).then(fn))(x)(reverse(fns))
 export const method = k => x => (...args) => x[k](...args)
+export const trampoline = (fn) => (...args) => {
+  let recursion = apply(fn)(args)
+  while (isFunction(recursion)) {
+    recursion = recursion()
+  }
+  return recursion
+}
 
 // Objects
 export const freeze = x => Object.freeze(x)
