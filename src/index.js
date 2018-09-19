@@ -102,7 +102,7 @@ export const trampoline = (fn) => (...args) => {
 export const freeze = x => Object.freeze(x)
 export const keys = x => isObject(x) ? Object.keys(x) : []
 export const prop = k => x => isObject(x) ? x[k] : void (0)
-export const assoc = k => a => x => Object.assign(isArray(x) ? [] : {}, x, {[k]: a})
+export const assoc = k => a => x => Object.assign(isArray(x) ? [] : {}, x, { [k]: a })
 export const dissoc = k => x => reduce((acc, curr) => assoc(curr)(prop(curr)(x))(acc))({})(filter(ne(k))(keys(x)))
 export const values = x => map(k => prop(k)(x))(keys(x))
 export const has = k => x => isObject(x) && x.hasOwnProperty(k)
