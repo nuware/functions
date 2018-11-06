@@ -34,6 +34,8 @@ export const reverse = xs => xs.slice().reverse()
 
 export const last = xs => head(reverse(xs))
 
+export const length = x => (x && x.length) ? x.length : 0
+
 export const concat = b => a => a.concat(b)
 
 export const append = a => xs => concat([a])(xs)
