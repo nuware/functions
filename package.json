@@ -1,6 +1,6 @@
 {
   "name": "@nuware/functions",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Useful functions",
   "main": "dist/functions.cjs.js",
   "module": "dist/functions.esm.js",
