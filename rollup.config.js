@@ -1,30 +1,52 @@
-import minify from 'rollup-plugin-minify-es'
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import { terser } from 'rollup-plugin-terser'
+import pkg from './package.json'
 
-const banner = '/**\n * Functions\n *\n * Copyright 2018 Dmitry Dudin <dima@nuware.ru>\n */'
+const banner = `/**
+ * Functions - ${pkg.description}
+ *
+ * @version ${pkg.version}
+ * @license MIT
+ * @copyright Dmitry Dudin <dima@nuware.ru> 2018
+ */`
 
 export default [{
   input: 'src/index.js',
   output: {
-    file: 'dist/functions.esm.js',
+    file: pkg.module,
     format: 'esm',
     banner
   }
 }, {
   input: 'src/index.js',
   output: {
-    file: 'dist/functions.umd.js',
-    format: 'umd',
-    name: 'nuware.F',
+    file: pkg.main,
+    format: 'cjs',
     banner
   }
 }, {
   input: 'src/index.js',
   output: {
-    file: 'dist/functions.min.js',
+    file: pkg.browser,
+    format: 'umd',
+    name: 'nuware.F',
+    banner
+  },
+  plugins: [
+    resolve(),
+    commonjs()
+  ]
+}, {
+  input: 'src/index.js',
+  output: {
+    file: pkg.minimized,
     format: 'umd',
     name: 'nuware.F'
   },
   plugins: [
-    minify()
+    resolve(),
+    commonjs(),
+    terser()
   ]
 }]
