@@ -141,7 +141,7 @@ export const equal = a => b => {
     }
 
     for (let i = xs.length; i--;) {
-      if (!equal(a[xs[i]], b[xs[i]])) return false
+      if (!equal(a[xs[i]])(b[xs[i]])) return false
     }
 
     return true
