@@ -98,6 +98,8 @@ export const has = k => x => isObject(x) && x.hasOwnProperty(k)
 
 export const omit = xs => x => reduce((acc, curr) => dissoc(curr)(acc))(x)(xs)
 
+export const pick = xs => x => reduce((acc, curr) => has(curr)(x) ? assoc(curr)(prop(curr)(x))(acc) : acc)({})(xs)
+
 export const objectOf = k => v => assoc(k)(v)({})
 
 export const toLower = s => s.toLowerCase()
