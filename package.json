@@ -15,9 +15,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "lint": "eslint src/index.js",
+    "syntax": "standard --fix",
     "build": "rollup -c",
-    "release": "npm run clean && npm run lint && npm run build"
+    "release": "npm run clean && npm run syntax && npm run build"
   },
   "author": "Dmitry Dudin <dima@nuware.ru>",
   "license": "MIT",
@@ -25,21 +25,11 @@
     "url": "https://github.com/nuware/functions/issues"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "rollup": "^0.67.0",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-terser": "^3.0.0"
-  },
-  "eslintConfig": {
-    "extends": "standard",
-    "rules": {
-      "no-multi-spaces": "off"
-    }
+    "dts-gen": "^0.5.7",
+    "rollup": "^1.8.0",
+    "rollup-plugin-commonjs": "^9.3.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "standard": "^12.0.1"
   }
 }
