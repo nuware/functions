@@ -8,25 +8,25 @@ const banner = `/**
  *
  * @version ${pkg.version}
  * @license MIT
- * @copyright Dmitry Dudin <dima@nuware.ru> 2018
+ * @copyright Dmitry Dudin <dima@nuware.ru> 2018 - 2019
  */`
 
 export default [{
-  input: 'src/index.js',
+  input: 'index.js',
   output: {
     file: pkg.module,
     format: 'esm',
     banner
   }
 }, {
-  input: 'src/index.js',
+  input: 'index.js',
   output: {
     file: pkg.main,
     format: 'cjs',
     banner
   }
 }, {
-  input: 'src/index.js',
+  input: 'index.js',
   output: {
     file: pkg.browser,
     format: 'umd',
@@ -38,7 +38,7 @@ export default [{
     commonjs()
   ]
 }, {
-  input: 'src/index.js',
+  input: 'index.js',
   output: {
     file: pkg.minimized,
     format: 'umd',

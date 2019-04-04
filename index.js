@@ -2,29 +2,38 @@ export const K = a => () => a
 
 export const I = a => a
 
-export const eq = a => b => a === b
+export const curry = fn => {
+  const curried = (...args) => {
+    return args.length >= fn.length
+      ? fn.apply(null, args)
+      : (...rest) => curried.apply(null, args.concat(rest))
+  }
+  return curried
+}
 
-export const ne = a => b => a !== b
+export const eq = curry((a, b) => a === b)
+
+export const ne = curry((a, b) => a !== b)
 
 export const typeOf = a => typeof a
 
-export const instanceOf = t => a => a instanceof t
+export const instanceOf = curry((t, a) => a instanceof t)
 
 export const isArray = a => Array.isArray(a)
 
-export const isNull = a => eq(null)(a)
+export const isNull = a => eq(null, a)
 
-export const isFunction = a => eq('function')(typeOf(a))
+export const isFunction = a => eq('function', typeOf(a))
 
-export const isString = a => eq('string')(typeOf(a))
+export const isString = a => eq('string', typeOf(a))
 
-export const isNumber = a => eq('number')(typeOf(a))
+export const isNumber = a => eq('number', typeOf(a))
 
-export const isBoolean = a => eq('boolean')(typeOf(a))
+export const isBoolean = a => eq('boolean', typeOf(a))
 
-export const isDefined = a => ne('undefined')(typeOf(a))
+export const isDefined = a => ne('undefined', typeOf(a))
 
-export const isObject = a => eq('object')(typeOf(a)) && !isNull(a) && !isFunction(a) && !isArray(a)
+export const isObject = a => eq('object', typeOf(a)) && !isNull(a) && !isFunction(a) && !isArray(a)
 
 export const head = xs => xs[0]
 
@@ -36,20 +45,49 @@ export const last = xs => head(reverse(xs))
 
 export const length = x => (x && x.length) ? x.length : 0
 
-export const concat = b => a => a.concat(b)
+export const concat = curry((b, a) => a.concat(b))
 
-export const append = a => xs => concat([a])(xs)
+export const append = curry((a, xs) => concat([a], xs))
 
-export const prepend = a => xs => concat(xs)([a])
+export const prepend = curry((a, xs) => concat(xs, [a]))
 
-export const join = s => xs => xs.join(s)
+/**
+ * @function @curried
+ *
+ * join :: String -> [*] -> String
+ */
+export const join = curry((s, xs) => xs.join(s))
 
-export const map = f => xs => xs.map(f)
+/**
+ * @function @curried
+ *
+ * map :: (a -> b) -> [a] -> [b]
+ *
+ * map :: (a -> b) -> Promise a -> Promise b
+ *
+ * map :: (a -> b) -> Functor a -> Functor b
+ */
+export const map = curry((f, a) => isFunction(a.then) ? a.then(f, I) : a.map(f))
 
-export const each = f => xs => xs.forEach(f)
+/**
+ * @function @curried
+ *
+ * each :: (a -> *) -> [a] -> void
+ */
+export const each = curry((f, xs) => xs.forEach(f))
 
-export const filter = f => xs => xs.filter(f)
+/**
+ * @function @curried
+ *
+ * filter :: (a -> Boolean) -> [a] -> [a]
+ */
+export const filter = curry((f, xs) => xs.filter(f))
 
+/**
+ * @function @curried
+ *
+ * find :: (a -> Boolean) -> [a] -> [a] | void
+ */
 export const find = f => xs => xs.find(f)
 
 export const reduce = f => a => xs => xs.reduce(f, a)

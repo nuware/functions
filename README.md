@@ -40,6 +40,40 @@ or
 import { K, I, assoc, map ... } from '@nuware/functions'
 ```
 
+## API
+
+### map
+
+```
+(a -> b) -> [a] -> [b]
+(a -> b) -> Promise a -> Promise b
+(a -> b) -> Functor a -> Functor b
+```
+
+### each
+
+```
+(a -> *) -> [a] -> void
+```
+
+### join
+
+```
+String -> [*] -> String
+```
+
+### filter
+
+```
+(a -> Boolean) -> [a] -> [a]
+```
+
+### find
+
+```
+find :: (a -> Boolean) -> [a] -> [a] | void
+```
+
 ## Authors
 
 * Dmitry Dudin <dima@nuware.ru>
